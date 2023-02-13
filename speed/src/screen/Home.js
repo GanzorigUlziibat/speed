@@ -45,7 +45,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text style={styles.paragraph}>{text}</Text>
-      <Text style={styles.txt}>KM/H</Text>      
+      <Text style={styles.txt}>км/ц</Text>      
     </View>
   );
 }

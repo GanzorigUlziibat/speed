@@ -45,8 +45,8 @@ function MyTabs() {
           let iconName;
           if (route.name === 'Home') {
             iconName = focused
-            ? 'information-circle'
-            : 'information-circle-outline';
+            ? 'home'
+            : 'home-outline';
           } else if (route.name === 'Cart') {
             iconName = focused
             ? 'list-circle'
