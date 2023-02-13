@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Platform, Text, View, StyleSheet } from 'react-native';
-import Device from 'expo-device';
+import * as Device from 'expo-device';
 import * as Location from 'expo-location';
 
 export default function App() {
@@ -25,9 +25,10 @@ export default function App() {
         return;
       }
       let { status } = await Location.requestForegroundPermissionsAsync();
+      console.log({status})
       if (status !== 'granted') {
         setErrorMsg('Permission to access location was denied');
-        return;
+        return ; 
       }
 
       let location = await Location.getCurrentPositionAsync({});
@@ -55,7 +56,7 @@ export default function App() {
     <View style={styles.container}>
       <Text style={styles.paragraph}>{text}</Text>
       <Text style={styles.cntr}>{counter}</Text>
-      <Text>KM/H</Text>
+      <Text style={styles.txt}>KM/H</Text>
     </View>
   );
 }
@@ -76,6 +77,10 @@ const styles = StyleSheet.create({
   },
   cntr: {
     color: 'white',
+  },
+  txt:{
+    color: 'white',
+    fontSize: 50,
   }
 });
 
