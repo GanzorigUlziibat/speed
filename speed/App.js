@@ -40,7 +40,7 @@ function MyTabs() {
   const Tab = createBottomTabNavigator();
   return (
     <NavigationContainer>
-    <Tab.Navigator   screenOptions={({ route }) => ({
+    <Tab.Navigator  screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
           let iconName;
           if (route.name === 'Home') {
@@ -60,8 +60,8 @@ function MyTabs() {
     activeTintColor: 'tomato',
     inactiveTintColor: 'gray',
     }}>
-      <Tab.Screen name="Home" component={HomeStackScreen} />
-      <Tab.Screen name="Cart" component={CartStackScreen} />
+      <Tab.Screen name="Home" component={HomeStackScreen} options={{headerShown: false}}/>
+      <Tab.Screen name="Cart" component={CartStackScreen} options={{headerShown: false}}/>
     </Tab.Navigator>
   </NavigationContainer>
   );
