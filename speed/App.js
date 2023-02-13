@@ -6,8 +6,17 @@ import * as Location from 'expo-location';
 export default function App() {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
+  const [counter,setCounter] = useState(0);
 
-  useEffect(() => {
+  const test=()=>{
+    const interval = setInterval(() => {
+      setCounter((prevCounter) => prevCounter + 1);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }
+
+  const hurd=()=>{
     (async () => {
       if (Platform.OS === 'android' && !Device.isDevice) {
         setErrorMsg(
@@ -24,18 +33,29 @@ export default function App() {
       let location = await Location.getCurrentPositionAsync({});
       setLocation(location);
     })();
+  }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      hurd()
+      test()
+    }, 500);
+
+    return () => clearInterval(interval);
   }, []);
 
-  let text = 'Waiting..';
+  let text = '0';
   if (errorMsg) {
     text = errorMsg;
   } else if (location) {
-    text = JSON.stringify(location);
+    text = Math.round(location.coords.speed * 3.6);
   }
 
   return (
     <View style={styles.container}>
       <Text style={styles.paragraph}>{text}</Text>
+      <Text style={styles.cntr}>{counter}</Text>
+      <Text>KM/H</Text>
     </View>
   );
 }
@@ -46,10 +66,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
+    backgroundColor: 'black',
   },
   paragraph: {
     fontSize: 18,
     textAlign: 'center',
+    color: 'white',
+    fontSize: 200,
   },
+  cntr: {
+    color: 'white',
+  }
 });
 
