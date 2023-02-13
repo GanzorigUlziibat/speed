@@ -1,86 +1,73 @@
-import React, { useState, useEffect } from 'react';
-import { Platform, Text, View, StyleSheet } from 'react-native';
-import * as Device from 'expo-device';
-import * as Location from 'expo-location';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomeScreen from './src/screen/Home'
+import CartScreen from './src/screen/CartScreen';
+import FavoriteScreen from './src/screen/FavoriteScreen';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+//Add this import for importing icons
+import { Ionicons } from '@expo/vector-icons';
 
-export default function App() {
-  const [location, setLocation] = useState(null);
-  const [errorMsg, setErrorMsg] = useState(null);
-  const [counter,setCounter] = useState(0);
 
-  const test=()=>{
-    const interval = setInterval(() => {
-      setCounter((prevCounter) => prevCounter + 1);
-    }, 1000);
+const CartStack = createNativeStackNavigator();
 
-    return () => clearInterval(interval);
-  }
-
-  const hurd=()=>{
-    (async () => {
-      if (Platform.OS === 'android' && !Device.isDevice) {
-        setErrorMsg(
-          'Oops, this will not work on Snack in an Android Emulator. Try it on your device!'
-        );
-        return;
-      }
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      console.log({status})
-      if (status !== 'granted') {
-        setErrorMsg('Permission to access location was denied');
-        return ; 
-      }
-
-      let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
-    })();
-  }
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      hurd()
-      test()
-    }, 500);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  let text = '0';
-  if (errorMsg) {
-    text = errorMsg;
-  } else if (location) {
-    text = Math.round(location.coords.speed * 3.6);
-  }
-
+function CartStackScreen() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.paragraph}>{text}</Text>
-      <Text style={styles.cntr}>{counter}</Text>
-      <Text style={styles.txt}>KM/H</Text>
-    </View>
+
+      <CartStack.Navigator screenOptions={{
+        headerShown: false
+      }}
+        initialRouteName="Cart">
+        <CartStack.Screen name="Cart" component={CartScreen} />
+        <CartStack.Screen name="Favorite" component={FavoriteScreen} />
+      </CartStack.Navigator>
+
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
-    backgroundColor: 'black',
-  },
-  paragraph: {
-    fontSize: 18,
-    textAlign: 'center',
-    color: 'white',
-    fontSize: 200,
-  },
-  cntr: {
-    color: 'white',
-  },
-  txt:{
-    color: 'white',
-    fontSize: 50,
-  }
-});
+const HomeStack = createNativeStackNavigator();
+function HomeStackScreen() {
+  return (
+    <HomeStack.Navigator screenOptions={{
+      headerShown: false
+    }}>
+      <HomeStack.Screen name="Home" component={HomeScreen} />
+    </HomeStack.Navigator>
+  );
+}
 
+function MyTabs() {
+  const Tab = createBottomTabNavigator();
+  return (
+    <NavigationContainer>
+    <Tab.Navigator   screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+          if (route.name === 'Home') {
+            iconName = focused
+            ? 'information-circle'
+            : 'information-circle-outline';
+          } else if (route.name === 'Cart') {
+            iconName = focused
+            ? 'list-circle'
+            : 'list-circle-outline';
+          }
+    
+    return <Ionicons name={iconName} size={size} color={color}     />;
+       },
+    })}
+    tabBarOptions={{
+    activeTintColor: 'tomato',
+    inactiveTintColor: 'gray',
+    }}>
+      <Tab.Screen name="Home" component={HomeStackScreen} />
+      <Tab.Screen name="Cart" component={CartStackScreen} />
+    </Tab.Navigator>
+  </NavigationContainer>
+  );
+}
+
+
+
+
+export default MyTabs;
