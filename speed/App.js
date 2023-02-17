@@ -55,11 +55,18 @@ function MyTabs() {
 
             return <Ionicons name={iconName} size={size} color={color} />;
           },
+          tabBarStyle: {
+            height: 90,
+            paddingHorizontal: 5,
+            paddingTop: 0,
+            backgroundColor: "black",
+            position: "absolute",
+            borderTopWidth: 0,
+          },
         })}
         tabBarOptions={{
           activeTintColor: "orange",
           inactiveTintColor: "white",
-          tabBarStyle: [{ flex: 1 }],
         }}
       >
         <Tab.Screen
