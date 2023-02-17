@@ -79,11 +79,9 @@ function MyTabs() {
             position: "absolute",
             borderTopWidth: 0,
           },
+          tabBarActiveTintColor: "orange",
+          tabBarInactiveTintColor: "white",
         })}
-        tabBarOptions={{
-          activeTintColor: "orange",
-          inactiveTintColor: "white",
-        }}
       >
         <Tab.Screen
           name="Overview"
