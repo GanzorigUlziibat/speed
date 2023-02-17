@@ -6,6 +6,7 @@ import CartScreen from "./src/screen/CartScreen";
 import FavoriteScreen from "./src/screen/FavoriteScreen";
 import DetailScreen from "./src/screen/DetailScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import StepScreen from "./src/screen/StepScreen";
 //Add this import for importing icons
 import { Ionicons } from "@expo/vector-icons";
 
@@ -39,6 +40,19 @@ function HomeStackScreen() {
   );
 }
 
+const StepStack = createNativeStackNavigator();
+function StepStackScreen() {
+  return (
+    <StepStack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <StepStack.Screen name="Step" component={StepScreen} />
+    </StepStack.Navigator>
+  );
+}
+
 function MyTabs() {
   const Tab = createBottomTabNavigator();
   return (
@@ -51,6 +65,8 @@ function MyTabs() {
               iconName = focused ? "home" : "home-outline";
             } else if (route.name === "Carts") {
               iconName = focused ? "list-circle" : "list-circle-outline";
+            } else if (route.name === "Steps") {
+              iconName = focused ? "walk" : "walk-outline";
             }
 
             return <Ionicons name={iconName} size={size} color={color} />;
@@ -77,6 +93,11 @@ function MyTabs() {
         <Tab.Screen
           name="Carts"
           component={CartStackScreen}
+          options={{ headerShown: false }}
+        />
+        <Tab.Screen
+          name="Steps"
+          component={StepStackScreen}
           options={{ headerShown: false }}
         />
       </Tab.Navigator>
