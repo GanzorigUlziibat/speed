@@ -29,7 +29,7 @@ export default function App() {
   useEffect(() => {
     const interval = setInterval(() => {
       hurd();
-    }, 500);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);

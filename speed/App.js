@@ -9,6 +9,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import StepScreen from "./src/screen/StepScreen";
 //Add this import for importing icons
 import { Ionicons } from "@expo/vector-icons";
+import AboutScreen from "./src/screen/AboutScreen";
 
 const CartStack = createNativeStackNavigator();
 
@@ -53,6 +54,19 @@ function StepStackScreen() {
   );
 }
 
+const AboutStack = createNativeStackNavigator();
+function AboutStackScreen() {
+  return (
+    <AboutStack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <AboutStack.Screen name="About" component={AboutScreen} />
+    </AboutStack.Navigator>
+  );
+}
+
 function MyTabs() {
   const Tab = createBottomTabNavigator();
   return (
@@ -67,12 +81,13 @@ function MyTabs() {
               iconName = focused ? "list-circle" : "list-circle-outline";
             } else if (route.name === "Steps") {
               iconName = focused ? "walk" : "walk-outline";
+            } else if (route.name === "About") {
+              iconName = focused ? "happy" : "happy-outline";
             }
-
             return <Ionicons name={iconName} size={size} color={color} />;
           },
           tabBarStyle: {
-            height: 90,
+            height: 60,
             paddingHorizontal: 5,
             paddingTop: 0,
             backgroundColor: "black",
@@ -96,6 +111,11 @@ function MyTabs() {
         <Tab.Screen
           name="Steps"
           component={StepStackScreen}
+          options={{ headerShown: false }}
+        />
+        <Tab.Screen
+          name="About"
+          component={AboutStackScreen}
           options={{ headerShown: false }}
         />
       </Tab.Navigator>
