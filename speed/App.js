@@ -57,12 +57,8 @@ function StepStackScreen() {
 const AboutStack = createNativeStackNavigator();
 function AboutStackScreen() {
   return (
-    <AboutStack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
-      <AboutStack.Screen name="About" component={AboutScreen} />
+    <AboutStack.Navigator>
+      <AboutStack.Screen name="Бидний тухай" component={AboutScreen} />
     </AboutStack.Navigator>
   );
 }

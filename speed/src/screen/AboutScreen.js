@@ -1,10 +1,10 @@
-import { View, Text } from 'react-native'
+import { View, Text, SafeAreaView } from 'react-native'
 import React from 'react'
 
 export default function AboutScreen() {
   return (
-    <View>
+    <SafeAreaView>
       <Text>AboutScreen</Text>
-    </View>
+    </SafeAreaView>
   )
 }
