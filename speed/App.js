@@ -1,186 +1,106 @@
-import React from "react";
-import {
-  View,
-  Text,
-  SafeAreaView,
-  StyleSheet,
-  Platform,
-  ScrollView,
-  Image,
-  Pressable,
-} from "react-native";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import Foundation from "@expo/vector-icons/Foundation";
-export default function App() {
-  return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView>
-        <View style={styles.v0}>
-          <View style={styles.v1}>
-            <Text style={styles.v0text}>Tovch nom</Text>
-            <Ionicons name="chevron-forward" style={styles.v0icon} />
-          </View>
-          <View style={styles.v2}>
-            <Text style={styles.v0text}>Tovch nom1</Text>
-            <Foundation name="upload-cloud" style={styles.v0icon} />
-          </View>
+import * as React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import HomeScreen from "./src/screen/Home";
+import CartScreen from "./src/screen/CartScreen";
+import FavoriteScreen from "./src/screen/FavoriteScreen";
+import DetailScreen from "./src/screen/DetailScreen";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import StepScreen from "./src/screen/StepScreen";
+//Add this import for importing icons
+import { Ionicons } from "@expo/vector-icons";
 
-          <View style={styles.v3}>
-            <Text style={styles.v0text}>Tovch nom2</Text>
-            <Ionicons name="calculator" style={styles.v0icon} />
-          </View>
-          <View style={styles.v4}>
-            <Text style={styles.v0text}>Tovch nom3</Text>
-            <Ionicons name="chevron-forward" style={styles.v0icon} />
-          </View>
-        </View>
-        <Pressable
-          onPress={() => {
-            alert("nom view 0 pressed");
-          }}
-        >
-          <View style={styles.nomView0}>
-            <Text style={styles.nomview0text0}>kiki bolon jiji</Text>
-            <Text style={styles.nomview0text1}>Ene doloo hongoiin ontsloh</Text>
-            <Image
-              style={styles.nomviewimg0}
-              source={require("./assets/favicon.png")}
-            />
-          </View>
-        </Pressable>
-        <Pressable
-          onPress={() => {
-            alert("nom view 0 pressed");
-          }}
-        >
-          <View style={styles.nomView0}>
-            <Text style={styles.nomview0text0}>kiki bolon jiji</Text>
-            <Text style={styles.nomview0text1}>Ene doloo hongoiin ontsloh</Text>
-            <Image
-              style={styles.nomviewimg0}
-              source={require("./assets/favicon.png")}
-            />
-          </View>
-        </Pressable>
-        <Pressable
-          onPress={() => {
-            alert("nom view 0 pressed");
-          }}
-        >
-          <View style={styles.nomView0}>
-            <Text style={styles.nomview0text0}>kiki bolon jiji</Text>
-            <Text style={styles.nomview0text1}>Ene doloo hongoiin ontsloh</Text>
-            <Image
-              style={styles.nomviewimg0}
-              source={require("./assets/favicon.png")}
-            />
-          </View>
-        </Pressable>
-        <Pressable
-          onPress={() => {
-            alert("nom view 0 pressed");
-          }}
-        >
-          <View style={styles.nomView0}>
-            <Text style={styles.nomview0text0}>kiki bolon jiji</Text>
-            <Text style={styles.nomview0text1}>Ene doloo hongoiin ontsloh</Text>
-            <Image
-              style={styles.nomviewimg0}
-              source={require("./assets/favicon.png")}
-            />
-          </View>
-        </Pressable>
-        <Pressable
-          onPress={() => {
-            alert("nom view 0 pressed");
-          }}
-        >
-          <View style={styles.nomView0}>
-            <Text style={styles.nomview0text0}>kiki bolon jiji</Text>
-            <Text style={styles.nomview0text1}>Ene doloo hongoiin ontsloh</Text>
-            <Image
-              style={styles.nomviewimg0}
-              source={require("./assets/favicon.png")}
-            />
-          </View>
-        </Pressable>
-      </ScrollView>
-    </SafeAreaView>
+const CartStack = createNativeStackNavigator();
+
+function CartStackScreen() {
+  return (
+    <CartStack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+      initialRouteName="Cart"
+    >
+      <CartStack.Screen name="Cart" component={CartScreen} />
+      <CartStack.Screen name="Favorite" component={FavoriteScreen} />
+      <CartStack.Screen name="Detail" component={DetailScreen} />
+    </CartStack.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#ccc",
-  },
-  v0: {
-    backgroundColor: "white",
-    height: 270,
-    borderRadius: 20,
-    margin: 15,
-    flexDirection: "row",
-    flexWrap: "wrap",
-    // alignItems: "center",
-    alignContent: "center",
-    justifyContent: "center",
-    // padding: 30,
-  },
-  v1: {
-    height: 100,
-    width: 150,
-    backgroundColor: "aqua",
-    margin: 5,
-  },
-  v2: {
-    height: 100,
-    width: 150,
-    backgroundColor: "red",
-    margin: 5,
-  },
-  v3: {
-    height: 100,
-    width: 150,
-    backgroundColor: "orange",
-    margin: 5,
-  },
-  v4: {
-    height: 100,
-    width: 150,
-    backgroundColor: "purple",
-    margin: 5,
-  },
-  v0text: {
-    fontSize: 20,
-    fontWeight: "800",
-    color: "white",
-    margin: 15,
-  },
-  v0icon: {
-    fontSize: 32,
-    color: "white",
-    marginLeft: 15,
-  },
-  nomView0: {
-    backgroundColor: "white",
-    height: 500,
-    margin: 15,
-    borderRadius: 20,
-    // padding: 20,
-    overflow: "hidden",
-  },
-  nomview0text0: {
-    color: "grey",
-    textTransform: "uppercase",
-    margin: 20,
-  },
-  nomview0text1: {
-    color: "black",
-    fontSize: 30,
-    fontWeight: "700",
-    // textTransform: "uppercase",
-    marginBottom: 20,
-    marginLeft: 20,
-  },
-  nomviewimg0: { width: "100%", aspectRatio: 1, height: undefined },
-});
+const HomeStack = createNativeStackNavigator();
+function HomeStackScreen() {
+  return (
+    <HomeStack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <HomeStack.Screen name="Home" component={HomeScreen} />
+    </HomeStack.Navigator>
+  );
+}
+
+const StepStack = createNativeStackNavigator();
+function StepStackScreen() {
+  return (
+    <StepStack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <StepStack.Screen name="Step" component={StepScreen} />
+    </StepStack.Navigator>
+  );
+}
+
+function MyTabs() {
+  const Tab = createBottomTabNavigator();
+  return (
+    <NavigationContainer>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+            if (route.name === "Overview") {
+              iconName = focused ? "home" : "home-outline";
+            } else if (route.name === "Carts") {
+              iconName = focused ? "list-circle" : "list-circle-outline";
+            } else if (route.name === "Steps") {
+              iconName = focused ? "walk" : "walk-outline";
+            }
+
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+          tabBarStyle: {
+            height: 90,
+            paddingHorizontal: 5,
+            paddingTop: 0,
+            backgroundColor: "black",
+            position: "absolute",
+            borderTopWidth: 0,
+          },
+          tabBarActiveTintColor: "orange",
+          tabBarInactiveTintColor: "white",
+        })}
+      >
+        <Tab.Screen
+          name="Overview"
+          component={HomeStackScreen}
+          options={{ headerShown: false }}
+        />
+        <Tab.Screen
+          name="Carts"
+          component={CartStackScreen}
+          options={{ headerShown: false }}
+        />
+        <Tab.Screen
+          name="Steps"
+          component={StepStackScreen}
+          options={{ headerShown: false }}
+        />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+}
+
+export default MyTabs;
