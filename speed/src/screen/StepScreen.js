@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { Pedometer } from "expo-sensors";
+import { AnimatedCircularProgress } from "react-native-circular-progress";
 
 export default function App() {
   const [isPedometerAvailable, setIsPedometerAvailable] = useState("checking");
@@ -14,7 +15,10 @@ export default function App() {
     if (isAvailable) {
       const end = new Date();
       const start = new Date();
-      start.setDate(end.getDate() - 1);
+      start.setDate(end.getDate());
+      start.setHours(4);
+      start.setMinutes(0);
+      start.setSeconds(0);
 
       const pastStepCountResult = await Pedometer.getStepCountAsync(start, end);
       if (pastStepCountResult) {
@@ -29,11 +33,30 @@ export default function App() {
 
   useEffect(() => {
     const subscription = subscribe();
-    return () => subscription && subscription.remove();
-  }, []);
+    // return () => subscription && subscription.remove();
+  }, [currentStepCount]);
 
   return (
     <SafeAreaView style={styles.container}>
+      <AnimatedCircularProgress
+        size={220}
+        width={15}
+        fill={(100 / 5000) * pastStepCount}
+        tintColor="#00e0ff"
+        onAnimationComplete={() => console.log("onAnimationComplete")}
+        backgroundColor="black"
+        dashedTint={{ width: 2, gap: 1 }}
+        arcSweepAngle={210}
+        rotation={255}
+        duration={100}
+        prefill={50}
+        dashedBackground={{ width: 2, gap: 1 }}
+      />
+      <View>
+        <Text style={{ fontSize: 30, fontWeight: "bold" }}>
+          {pastStepCount}
+        </Text>
+      </View>
       <Text>Pedometer.isAvailableAsync(): {isPedometerAvailable}</Text>
       <Text>Steps taken in the last 24 hours: {pastStepCount}</Text>
       <Text>Walk! And watch this go up: {currentStepCount}</Text>
@@ -48,4 +71,3 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
-
