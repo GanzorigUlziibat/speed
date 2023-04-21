@@ -1,5 +1,5 @@
 import { View, Text, SafeAreaView, Image, StyleSheet } from 'react-native'
-import React from 'react'
+import React from 'react';
 
 export default function AboutScreen() {
   return (
@@ -18,6 +18,7 @@ export default function AboutScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor:'black',
   },
   view1:{
     alignItems:"center",
