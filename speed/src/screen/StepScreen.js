@@ -39,7 +39,7 @@ export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <AnimatedCircularProgress
-        size={220}
+        size={320}
         width={15}
         fill={(100 / 5000) * pastStepCount}
         tintColor="#00e0ff"
@@ -51,12 +51,19 @@ export default function App() {
         duration={100}
         prefill={50}
         dashedBackground={{ width: 2, gap: 1 }}
-      />
-      <View>
-        <Text style={{ fontSize: 30, fontWeight: "bold" }}>
-          {pastStepCount}
-        </Text>
-      </View>
+      >
+        {(fill) => (
+          <View>
+            <Text>Todays steps</Text>
+            <Text style={{ fontSize: 30, fontWeight: "bold" }}>
+              {pastStepCount}
+            </Text>
+            <Text>Todays goal 5000</Text>
+            <Text>completed: {(100 / 5000) * pastStepCount} %</Text>
+          </View>
+        )}
+      </AnimatedCircularProgress>
+      <View></View>
       <Text>Pedometer.isAvailableAsync(): {isPedometerAvailable}</Text>
       <Text>Steps taken in the last 24 hours: {pastStepCount}</Text>
       <Text>Walk! And watch this go up: {currentStepCount}</Text>
