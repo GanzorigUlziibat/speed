@@ -44,7 +44,7 @@ export default function App() {
         fill={(100 / 5000) * pastStepCount}
         tintColor="#00e0ff"
         onAnimationComplete={() => console.log("onAnimationComplete")}
-        backgroundColor="black"
+        backgroundColor="white"
         dashedTint={{ width: 2, gap: 1 }}
         arcSweepAngle={210}
         rotation={255}
@@ -53,20 +53,26 @@ export default function App() {
         dashedBackground={{ width: 2, gap: 1 }}
       >
         {(fill) => (
-          <View>
-            <Text>Todays steps</Text>
-            <Text style={{ fontSize: 30, fontWeight: "bold" }}>
-              {pastStepCount}
+          <View style={styles.view1}>
+            <Text style={styles.txt1}>Today's steps</Text>
+            <Text style={styles.txt2}>{pastStepCount}</Text>
+            <Text style={styles.txt3}>Steps Goal: 5000</Text>
+            <Text style={styles.txt4}>
+              {(100 / 5000) * pastStepCount}% completed{" "}
             </Text>
-            <Text>Todays goal 5000</Text>
-            <Text>completed: {(100 / 5000) * pastStepCount} %</Text>
           </View>
         )}
       </AnimatedCircularProgress>
       <View></View>
-      <Text>Pedometer.isAvailableAsync(): {isPedometerAvailable}</Text>
-      <Text>Steps taken in the last 24 hours: {pastStepCount}</Text>
-      <Text>Walk! And watch this go up: {currentStepCount}</Text>
+      <Text style={styles.txt3}>
+        Pedometer.isAvailableAsync(): {isPedometerAvailable}
+      </Text>
+      <Text style={styles.txt3}>
+        Steps taken in the last 24 hours: {pastStepCount}
+      </Text>
+      <Text style={styles.txt3}>
+        Walk! And watch this go up: {currentStepCount}
+      </Text>
     </SafeAreaView>
   );
 }
@@ -76,5 +82,25 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "black",
+  },
+  view1: {
+    alignItems: "center",
+  },
+  txt1: {
+    fontSize: 25,
+    color: "white",
+  },
+  txt2: {
+    fontSize: 70,
+    fontWeight: "bold",
+    color: "#00e0ff",
+  },
+  txt3: {
+    color: "white",
+  },
+  txt4: {
+    color: "grey",
+    marginTop: 5,
   },
 });
