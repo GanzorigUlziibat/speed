@@ -9,7 +9,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import StepScreen from "./src/screen/StepScreen";
 //Add this import for importing icons
 import { Ionicons } from "@expo/vector-icons";
-import AboutScreen from "./src/screen/AboutScreen";
 
 const CartStack = createNativeStackNavigator();
 
@@ -19,20 +18,12 @@ function CartStackScreen() {
       screenOptions={{
         headerShown: false,
       }}
-<<<<<<< HEAD
-        initialRouteName="Settings">
-        <CartStack.Screen name="Settings" component={CartScreen} />
-        <CartStack.Screen name="Favorite" component={FavoriteScreen} />
-      </CartStack.Navigator>
-
-=======
       initialRouteName="Cart"
     >
       <CartStack.Screen name="Cart" component={CartScreen} />
       <CartStack.Screen name="Favorite" component={FavoriteScreen} />
       <CartStack.Screen name="Detail" component={DetailScreen} />
     </CartStack.Navigator>
->>>>>>> 3cfebd29aab139a046e1894d082dbf949bf8b3b7
   );
 }
 
@@ -62,19 +53,6 @@ function StepStackScreen() {
   );
 }
 
-const AboutStack = createNativeStackNavigator();
-function AboutStackScreen() {
-  return (
-    <AboutStack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
-      <AboutStack.Screen name="Бидний тухай" component={AboutScreen} />
-    </AboutStack.Navigator>
-  );
-}
-
 function MyTabs() {
   const Tab = createBottomTabNavigator();
   return (
@@ -82,30 +60,6 @@ function MyTabs() {
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
-<<<<<<< HEAD
-          let iconName;
-          if (route.name === 'Home') {
-            iconName = focused
-            ? 'home'
-            : 'home-outline';
-          } else if (route.name === 'Settings') {
-            iconName = focused
-            ? 'list-circle'
-            : 'list-circle-outline';
-          }
-    
-    return <Ionicons name={iconName} size={size} color={color}     />;
-       },
-    })}
-    tabBarOptions={{
-    activeTintColor: 'red',
-    inactiveTintColor: 'gray',
-    }}>
-      <Tab.Screen name="Home" component={HomeStackScreen} options={{headerShown: false}}/>
-      <Tab.Screen name="Settings" component={CartStackScreen} options={{headerShown: false}}/>
-    </Tab.Navigator>
-  </NavigationContainer>
-=======
             let iconName;
             if (route.name === "Overview") {
               iconName = focused ? "home" : "home-outline";
@@ -113,13 +67,12 @@ function MyTabs() {
               iconName = focused ? "list-circle" : "list-circle-outline";
             } else if (route.name === "Steps") {
               iconName = focused ? "walk" : "walk-outline";
-            } else if (route.name === "About") {
-              iconName = focused ? "happy" : "happy-outline";
             }
+
             return <Ionicons name={iconName} size={size} color={color} />;
           },
           tabBarStyle: {
-            height: 60,
+            height: 90,
             paddingHorizontal: 5,
             paddingTop: 0,
             backgroundColor: "black",
@@ -145,14 +98,8 @@ function MyTabs() {
           component={StepStackScreen}
           options={{ headerShown: false }}
         />
-        <Tab.Screen
-          name="About"
-          component={AboutStackScreen}
-          options={{ headerShown: false }}
-        />
       </Tab.Navigator>
     </NavigationContainer>
->>>>>>> 3cfebd29aab139a046e1894d082dbf949bf8b3b7
   );
 }
 
