@@ -17,8 +17,8 @@ function CartStackScreen() {
       <CartStack.Navigator screenOptions={{
         headerShown: false
       }}
-        initialRouteName="Cart">
-        <CartStack.Screen name="Cart" component={CartScreen} />
+        initialRouteName="Settings">
+        <CartStack.Screen name="Settings" component={CartScreen} />
         <CartStack.Screen name="Favorite" component={FavoriteScreen} />
       </CartStack.Navigator>
 
@@ -47,7 +47,7 @@ function MyTabs() {
             iconName = focused
             ? 'home'
             : 'home-outline';
-          } else if (route.name === 'Cart') {
+          } else if (route.name === 'Settings') {
             iconName = focused
             ? 'list-circle'
             : 'list-circle-outline';
@@ -61,7 +61,7 @@ function MyTabs() {
     inactiveTintColor: 'gray',
     }}>
       <Tab.Screen name="Home" component={HomeStackScreen} options={{headerShown: false}}/>
-      <Tab.Screen name="Cart" component={CartStackScreen} options={{headerShown: false}}/>
+      <Tab.Screen name="Settings" component={CartStackScreen} options={{headerShown: false}}/>
     </Tab.Navigator>
   </NavigationContainer>
   );
