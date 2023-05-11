@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "speed",
+    "name": "Speed",
     "slug": "speed",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/speedd.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/speedd.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

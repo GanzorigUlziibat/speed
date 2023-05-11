@@ -93,11 +93,10 @@ function MyTabs() {
             return <Ionicons name={iconName} size={size} color={color} />;
           },
           tabBarStyle: {
-            height: 60,
+            height: 80,
             paddingHorizontal: 5,
             paddingTop: 0,
             backgroundColor: "black",
-            position: "absolute",
             borderTopWidth: 0,
           },
           tabBarActiveTintColor: "#00e0ff",

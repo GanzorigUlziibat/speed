@@ -2,9 +2,11 @@ import { useState, useEffect } from "react";
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { Pedometer } from "expo-sensors";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
+import Svg from "react-native-svg";
 
 export default function App() {
-  const [isPedometerAvailable, setIsPedometerAvailable] = useState("checking");
+  const [isPedometerAvailable, setIsPedometerAvailable] =
+    useState("Шалгаж байна");
   const [pastStepCount, setPastStepCount] = useState(0);
   const [currentStepCount, setCurrentStepCount] = useState(0);
 
@@ -54,25 +56,22 @@ export default function App() {
       >
         {(fill) => (
           <View style={styles.view1}>
-            <Text style={styles.txt1}>Today's steps</Text>
+            <Text style={styles.txt1}>Өнөөдрийн</Text>
+            <Text style={styles.txt1}>алхалт</Text>
             <Text style={styles.txt2}>{pastStepCount}</Text>
-            <Text style={styles.txt3}>Steps Goal: 5000</Text>
+            <Text style={styles.txt3}>Алхах хэмжээ: 5000</Text>
             <Text style={styles.txt4}>
-              {(100 / 5000) * pastStepCount}% completed{" "}
+              {(100 / 5000) * pastStepCount}% алхсан{" "}
             </Text>
           </View>
         )}
       </AnimatedCircularProgress>
       <View></View>
       <Text style={styles.txt3}>
-        Pedometer.isAvailableAsync(): {isPedometerAvailable}
+        Алхалт: {isPedometerAvailable == "true" ? "Тийм" : "Үгүй"}
       </Text>
-      <Text style={styles.txt3}>
-        Steps taken in the last 24 hours: {pastStepCount}
-      </Text>
-      <Text style={styles.txt3}>
-        Walk! And watch this go up: {currentStepCount}
-      </Text>
+      <Text style={styles.txt3}>Өнөөдрийн алхалт: {pastStepCount}</Text>
+      {/* <Text style={styles.txt3}>Өнөөдрийн алхалт: {currentStepCount}</Text> */}
     </SafeAreaView>
   );
 }
