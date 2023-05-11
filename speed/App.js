@@ -97,7 +97,7 @@ function MyTabs() {
             position: "absolute",
             borderTopWidth: 0,
           },
-          tabBarActiveTintColor: "orange",
+          tabBarActiveTintColor: "#00e0ff",
           tabBarInactiveTintColor: "white",
         })}
       >
