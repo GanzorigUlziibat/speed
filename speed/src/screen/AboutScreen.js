@@ -1,4 +1,12 @@
-import { View, Text, SafeAreaView, Image, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  Image,
+  StyleSheet,
+  Platform,
+  StatusBar,
+} from "react-native";
 import React from "react";
 
 export default function AboutScreen() {
@@ -17,7 +25,7 @@ export default function AboutScreen() {
           оюутануудын хамтын бүтээл юм. Дараа дараагийн нэмэлт сайжруулалтыг
           элсэгч, дүү нар нь сайжруулан хөгжүүлж байна.
         </Text>
-        <Text style={styles.txt}>Бүх эрх хуулиар хамгаалагдсан @2023</Text>
+        <Text style={styles.txt}>Бүх эрх хуулиар хамгаалагдсан ©2023</Text>
       </View>
     </SafeAreaView>
   );
@@ -27,9 +35,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "black",
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
   view1: {
+    marginTop: 30,
     alignItems: "center",
+
+    paddingHorizontal: 30,
   },
   img: {
     width: 250,
@@ -39,6 +51,8 @@ const styles = StyleSheet.create({
   },
   txt: {
     color: "white",
+    textAlign: "center",
+    // alignSelf: "center",
   },
   txt1: {
     color: "white",
