@@ -1,50 +1,32 @@
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "./src/screen/Home";
 import CartScreen from "./src/screen/CartScreen";
 import FavoriteScreen from "./src/screen/FavoriteScreen";
 import DetailScreen from "./src/screen/DetailScreen";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import StepScreen from "./src/screen/StepScreen";
+import AboutScreen from "./src/screen/AboutScreen";
 //Add this import for importing icons
 import { Ionicons } from "@expo/vector-icons";
-import AboutScreen from "./src/screen/AboutScreen";
-
-const CartStack = createNativeStackNavigator();
-
-function CartStackScreen() {
-  return (
-    <CartStack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
-<<<<<<< HEAD
-        initialRouteName="Settings">
-        <CartStack.Screen name="Settings" component={CartScreen} />
-        <CartStack.Screen name="Favorite" component={FavoriteScreen} />
-      </CartStack.Navigator>
-
-=======
-      initialRouteName="Cart"
-    >
-      <CartStack.Screen name="Cart" component={CartScreen} />
-      <CartStack.Screen name="Favorite" component={FavoriteScreen} />
-      <CartStack.Screen name="Detail" component={DetailScreen} />
-    </CartStack.Navigator>
->>>>>>> 3cfebd29aab139a046e1894d082dbf949bf8b3b7
-  );
-}
 
 const HomeStack = createNativeStackNavigator();
+
 function HomeStackScreen() {
   return (
     <HomeStack.Navigator
       screenOptions={{
         headerShown: false,
       }}
+      initialRouteName="Home"
     >
       <HomeStack.Screen name="Home" component={HomeScreen} />
+      <HomeStack.Screen name="Card" component={CartScreen} />
+      <HomeStack.Screen name="Favorite" component={FavoriteScreen} />
+      <HomeStack.Screen name="Detail" component={DetailScreen} />
+      <HomeStack.Screen name="Step" component={StepScreen} />
+      <HomeStack.Screen name="About" component={AboutScreen} />
     </HomeStack.Navigator>
   );
 }
@@ -70,7 +52,7 @@ function AboutStackScreen() {
         headerShown: false,
       }}
     >
-      <AboutStack.Screen name="Бидний тухай" component={AboutScreen} />
+      <AboutStack.Screen name="About" component={AboutScreen} />
     </AboutStack.Navigator>
   );
 }
@@ -82,40 +64,15 @@ function MyTabs() {
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
-<<<<<<< HEAD
-          let iconName;
-          if (route.name === 'Home') {
-            iconName = focused
-            ? 'home'
-            : 'home-outline';
-          } else if (route.name === 'Settings') {
-            iconName = focused
-            ? 'list-circle'
-            : 'list-circle-outline';
-          }
-    
-    return <Ionicons name={iconName} size={size} color={color}     />;
-       },
-    })}
-    tabBarOptions={{
-    activeTintColor: 'red',
-    inactiveTintColor: 'gray',
-    }}>
-      <Tab.Screen name="Home" component={HomeStackScreen} options={{headerShown: false}}/>
-      <Tab.Screen name="Settings" component={CartStackScreen} options={{headerShown: false}}/>
-    </Tab.Navigator>
-  </NavigationContainer>
-=======
             let iconName;
             if (route.name === "Overview") {
               iconName = focused ? "home" : "home-outline";
-            } else if (route.name === "Carts") {
-              iconName = focused ? "list-circle" : "list-circle-outline";
             } else if (route.name === "Steps") {
               iconName = focused ? "walk" : "walk-outline";
             } else if (route.name === "About") {
               iconName = focused ? "happy" : "happy-outline";
             }
+
             return <Ionicons name={iconName} size={size} color={color} />;
           },
           tabBarStyle: {
@@ -136,11 +93,6 @@ function MyTabs() {
           options={{ headerShown: false }}
         />
         <Tab.Screen
-          name="Carts"
-          component={CartStackScreen}
-          options={{ headerShown: false }}
-        />
-        <Tab.Screen
           name="Steps"
           component={StepStackScreen}
           options={{ headerShown: false }}
@@ -152,7 +104,6 @@ function MyTabs() {
         />
       </Tab.Navigator>
     </NavigationContainer>
->>>>>>> 3cfebd29aab139a046e1894d082dbf949bf8b3b7
   );
 }
 

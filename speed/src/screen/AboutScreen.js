@@ -5,6 +5,7 @@ export default function AboutScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.view1}>
+        <Text style={styles.text}>Бидний тухай</Text>
         <Image
           source={require("../../src/images/logo.jpg")}
           style={styles.img}
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
     width: 250,
     height: 250,
     borderRadius: 500,
-    marginTop: 50,
+    marginTop: 20,
   },
   txt: {
     color: "white",
@@ -48,5 +49,11 @@ const styles = StyleSheet.create({
     color: "white",
     marginBottom: 15,
     fontSize: 15,
+  },
+  text: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 30,
+    marginTop: 15,
   },
 });
