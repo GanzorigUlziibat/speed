@@ -26,6 +26,7 @@ export default function AboutScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "black",
   },
   view1: {
     alignItems: "center",

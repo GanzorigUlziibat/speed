@@ -10,7 +10,6 @@ import StepScreen from "./src/screen/StepScreen";
 import AboutScreen from "./src/screen/AboutScreen";
 //Add this import for importing icons
 import { Ionicons } from "@expo/vector-icons";
-import AboutScreen from "./src/screen/AboutScreen";
 
 const CartStack = createNativeStackNavigator();
 
@@ -65,7 +64,11 @@ function StepStackScreen() {
 const AboutStack = createNativeStackNavigator();
 function AboutStackScreen() {
   return (
-    <AboutStack.Navigator>
+    <AboutStack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
       <AboutStack.Screen name="Бидний тухай" component={AboutScreen} />
     </AboutStack.Navigator>
   );
