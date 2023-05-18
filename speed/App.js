@@ -8,6 +8,7 @@ import FavoriteScreen from "./src/screen/FavoriteScreen";
 import DetailScreen from "./src/screen/DetailScreen";
 import StepScreen from "./src/screen/StepScreen";
 import AboutScreen from "./src/screen/AboutScreen";
+import BaroScreen from "./src/screen/Barometer";
 //Add this import for importing icons
 import { Ionicons } from "@expo/vector-icons";
 
@@ -56,8 +57,21 @@ function StepStackScreen() {
         headerShown: false,
       }}
     >
-      <StepStack.Screen name="Step" component={StepScreen} />
+      <StepStack.Screen name="Алхам" component={StepScreen} />
     </StepStack.Navigator>
+  );
+}
+
+const BaroStack = createNativeStackNavigator();
+function BaroStackScreen() {
+  return (
+    <BaroStack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <BaroStack.Screen name="Baro" component={BaroScreen} />
+    </BaroStack.Navigator>
   );
 }
 
@@ -86,6 +100,8 @@ function MyTabs() {
               iconName = focused ? "home" : "home-outline";
             } else if (route.name === "Steps") {
               iconName = focused ? "walk" : "walk-outline";
+            } else if (route.name === "Барометр") {
+              iconName = focused ? "cloud-download" : "cloud-download-outline";
             } else if (route.name === "About") {
               iconName = focused ? "happy" : "happy-outline";
             }
@@ -111,6 +127,11 @@ function MyTabs() {
         <Tab.Screen
           name="Steps"
           component={StepStackScreen}
+          options={{ headerShown: false }}
+        />
+        <Tab.Screen
+          name="Барометр"
+          component={BaroStackScreen}
           options={{ headerShown: false }}
         />
         <Tab.Screen
